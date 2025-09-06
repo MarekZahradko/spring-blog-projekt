@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article>
+    <div id="centrovac">
+        <header>
+            <h1>Seznam článků</h1>
+        </header>
+
+        <section>
+            <p>
+                <a class="clanky-tlacitko" th:href="@{/articles/create}">Vytvořit nový</a>
+            </p>
+
+            <ul class="list-group" id="clanky">
+                <!-- Později zde budeme vykreslovat seznam článků -->
+                <li th:each="article: ${articles}" class="list-group-item">
+                    <h2><a th:href="@{'/articles/' + ${article.articleId}}" th:text="${article.title}"></a></h2>
+                    <p th:text="${article.description}"></p>
+                    <p>
+                        <a th:href="@{'/articles/edit/' + ${article.articleId}}">Editovat</a>
+                        <a href="#">Odstranit</a>
+                    </p>
+            </ul>
+        </section>
+    </div>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+
+</html>
